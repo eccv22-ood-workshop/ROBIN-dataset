@@ -1,3 +1,19 @@
+# ROBIN image classification
+
+This folder is for image classification on ROBIN dataset.
+The baseline can be run with the following command:
+```bash
+python3 main.py --data /path/to/download/ROBIN-cls-train/ --val-data /path/to/download/ROBIN-cls-val/ --pretrained
+```
+
+Below is the original `README` from PyTorch imagenet example.
+
+
+
+
+
+
+
 # ImageNet training in PyTorch
 
 This implements training of popular model architectures, such as ResNet, AlexNet, and VGG on the ImageNet dataset.
