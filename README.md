@@ -3,6 +3,12 @@
 This is the official repository for the Robustness to Individual Nuisances in Real-World Out-of-Distribution Shifts (ROBIN) dataset.
 
 
+|  Task  |  Train-Set  | Validation-Set | Baseline |
+| ---    |  ----       |     ---        |     ---- |
+| Image-classification| [here](https://drive.google.com/file/d/1Rsg0XUBX2eHp69-Ro9LLn645vM1kpZYG/view?usp=sharing) | [here](https://drive.google.com/file/d/1nXAe9Nd5ngC1kDPXNDES2YzjYRfeJmnM/view?usp=sharing) | [here](https://github.com/eccv22-ood-workshop/ROBIN-dataset/tree/master/image-classification) |
+| Object-detection | [here](https://drive.google.com/file/d/1HOjTeKzLxFOWQugjCVmZUalFaekctquS/view?usp=sharing) | TBD | [here](https://github.com/eccv22-ood-workshop/ROBIN-dataset/tree/master/image-classification) |
+
+
 ## Image-classification
 
 In the `image-classification` folder we provide a baseline for training and validating a classification model on our dataset.
