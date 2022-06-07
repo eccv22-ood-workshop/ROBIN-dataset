@@ -15,7 +15,9 @@ diff image-classification/main.py <(curl https://raw.githubusercontent.com/pytor
 
 ## Object-detection
 
-TBD
+We provide the training set for object detection [here](https://drive.google.com/drive/folders/1f2Ch6X1qnI6-OWugESEmeysRxx4IVkTL?usp=sharing), after unzip the `ROBIN-det-train.zip` file, the `ImageSets/Main/training.txt` specifies the name of all images used for training, we will release the validation set and a simple baseline soon.
+
+
 
 
 
