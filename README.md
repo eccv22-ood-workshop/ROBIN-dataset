@@ -25,5 +25,8 @@ We provide the training set for object detection [here](https://drive.google.com
 
 
 
+## Q&A
 
+Q: Is is allowed to use additional data for training purposes?
+A: No, only ImageNet-1k and ImageNet-1k pretrained models can be used for the challenge.
 
