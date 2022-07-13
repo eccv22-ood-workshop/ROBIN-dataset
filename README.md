@@ -1,34 +1,35 @@
 # ROBIN-dataset
 
-This is the official repository for the Robustness to Individual Nuisances in Real-World Out-of-Distribution Shifts (ROBIN) dataset.
+This is the official repository for the [ROBIN](https://arxiv.org/abs/2111.14341) dataset.
 
+You can access the dataset from [here](https://drive.google.com/drive/folders/1nJo60wphQ36T_E-iAuhN2ftLYh2285xb?usp=sharing)
 
-|  Task  |  Train-Set  | Validation-Set | Baseline |
-| ---    |  ----       |     ---        |     ---- |
-| Image-classification| [here](https://drive.google.com/file/d/16orZnfSzq8Vy7aUUNBnUcoGdm9ZqJD-5/view?usp=sharing) | [here](https://drive.google.com/file/d/1M2Ux19AVxPW91MxxTy4XCC8WKBeZUXYc/view?usp=sharing) | [here](https://github.com/eccv22-ood-workshop/ROBIN-dataset/tree/master/image-classification) |
-| Object-detection | [here](https://drive.google.com/file/d/1mZbia5hwvgrAXARJMuJiTe4qx9Mou8rU/view?usp=sharing) | TBD | [here](https://github.com/eccv22-ood-workshop/ROBIN-dataset/tree/master/object-detection) |
+The `.csv` file in each folder of the zip file contains the bounding box and 3D pose annotations for each images, please refer to this [repo](https://github.com/YoungXIAO13/PoseContrast/blob/main/data/Pascal3D/create_annotation.py) to see how we convert the matlab annotations into these csv files.
 
+For image classification, you will need to crop the bounding boxes with 10 pixel padding from the images.
 
+For object detection, we recommand using the [pascal-voc-writer](https://github.com/AndrewCarterUK/pascal-voc-writer) library to convert the `.csv` files into PASCAL-VOC format for training and testing.
 
-## Image-classification
+For 3D pose estimation, we recommand using the [NeMo](https://github.com/Angtian/NeMo) pipeline to train and test the model.
 
-In the `image-classification` folder we provide a baseline for training and validating a classification model on our dataset.
+We will also provide the data processing scripts and baselines shortly.
 
-The dataset used for image classification is provided [here](https://drive.google.com/drive/folders/1f2Ch6X1qnI6-OWugESEmeysRxx4IVkTL?usp=sharing), where the `ROBIN-cls-train` folder is organized in a way that can be directly readable by the `ImageFolder` class in PyTorch, and the `ROBIN-cls-val` folder contains 5 subfolders that represents the 5 nuisances, `shape`, `pose`, `texture`, `context`, and `weather`, where each subfolder is readable by the `ImageFolder` class, the validation set only contains `200` images, where each classes have `4` images per nuisance, the full test set will be accessible on the Codalab (releasing soon).
-The `image-classification/main.py` is a classification baseline that have the minimal change from the PyTorch imagenet example, check the modification by:
-```bash
-diff image-classification/main.py <(curl https://raw.githubusercontent.com/pytorch/examples/master/imagenet/main.py)
-```
-
-## Object-detection
-
-We provide the training set for object detection [here](https://drive.google.com/drive/folders/1f2Ch6X1qnI6-OWugESEmeysRxx4IVkTL?usp=sharing), after unzip the `ROBIN-det-train.zip` file, the `ImageSets/Main/training.txt` specifies the name of all images used for training, we will release the validation set and a simple baseline soon.
-
+We are still waiting for a confirmation of evaluation metrics from our sponsor, so the final evaluation method is not confirmed and the codalab server is not online.
+But please be noted, we will be restricting the performance on the IID test set in our dataset, for example, if the performance of your model on the IID test set three sigmas away from the mean value of our baseline, your submission will not be valid.
 
 
 ## Q&A
 
-Q: Is is allowed to use additional data for training purposes?
+Q: Is it allowed to use additional data for training purposes?
 
-A: No, only ImageNet-1k and ImageNet-1k pretrained models can be used for the challenge.
+A: **No**, only ImageNet-1k and ImageNet-1k pretrained models can be used for the challenge.
+
+Q: Can we use strong data augmentations (e.g. GANs), ensembling, or test time training techniques?
+
+A: **Yes**, but please note that we penalize submissions that are too far away on the IID test performance, and most of these techniques also improve the IID performance, so use them with caution.
+
+
+
+
+
 
