@@ -12,7 +12,7 @@ This is the official repository for the [ROBIN](https://arxiv.org/abs/2111.14341
 
 You can access the dataset from [here](https://drive.google.com/drive/folders/1nJo60wphQ36T_E-iAuhN2ftLYh2285xb?usp=sharing)
 
-The `.csv` file in each folder of the zip file contains the bounding box and 3D pose annotations for each images, please refer to this [repo](https://github.com/YoungXIAO13/PoseContrast/blob/main/data/Pascal3D/create_annotation.py) to see how we convert the matlab annotations into these csv files.
+The `.csv` file in each folder of the zip file contains the bounding box and 3D pose annotations for each images, please refer to this [repo](https://github.com/YoungXIAO13/PoseContrast/blob/main/data/Pascal3D/create_annotation.py) to see how we convert the matlab annotations into these csv files. Please note that for nuisance, there is no images for some particular categories, e.g. there is no diningtables in an OOD weather.
 
 For image classification, you will need to crop the bounding boxes with 10 pixel padding from the images.
 
