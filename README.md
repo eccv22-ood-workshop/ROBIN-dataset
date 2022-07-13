@@ -1,5 +1,13 @@
 # ROBIN-dataset
 
+## Changes
+
+1. The Phase-1 of the competition will not be a code submission challenge, we have released all the test data and labels in this repo. And Phase-1 will last longer than original planed, we will ask each team to provide a description of their developing environment at the end of Phase-1, Phase-2 will still be code submission challenge.
+2. We will be using Top-1 accuracy for image-classification, mAP@50 for object detection, and Acc@pi/6 for pose estimation as the metric, the IID test performance will also be considered as per request of the sponsor, we will penalize submissions that are significantly different in IID performance with our baseline.
+3. The only limitation now is that the model should only be trained on the given training set and/or the ImageNet-1k dataset, no additional dataset is allowed. You can use any ensemble, data augmentation, or test-time training techniques.
+
+---
+
 This is the official repository for the [ROBIN](https://arxiv.org/abs/2111.14341) dataset.
 
 You can access the dataset from [here](https://drive.google.com/drive/folders/1nJo60wphQ36T_E-iAuhN2ftLYh2285xb?usp=sharing)
