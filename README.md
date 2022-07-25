@@ -30,7 +30,7 @@ But please be noted, we will be restricting the performance on the IID test set 
 
 Q: Is it allowed to use additional data for training purposes?
 
-A: **No**, only ImageNet-1k and ImageNet-1k pretrained models can be used for the challenge.
+A: **No**, for the data, only the images and the classification labels from ImageNet-1k can be used. For pretrained models, only ImageNet-1k pretrained models can be used for the challenge.
 
 Q: Can we use strong data augmentations (e.g. GANs), ensembling, or test time training techniques?
 
