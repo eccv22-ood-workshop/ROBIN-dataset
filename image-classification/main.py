@@ -135,10 +135,10 @@ def main_worker(gpu, ngpus_per_node, args):
     # create model
     if args.pretrained:
         print("=> using pre-trained model '{}'".format(args.arch))
-        model = models.__dict__[args.arch](pretrained=True)
+        model = models.__dict__[args.arch](pretrained=True, num_classes=10)
     else:
         print("=> creating model '{}'".format(args.arch))
-        model = models.__dict__[args.arch]()
+        model = models.__dict__[args.arch](num_classes=10)
 
     if not torch.cuda.is_available():
         print('using CPU, this will be slow')
