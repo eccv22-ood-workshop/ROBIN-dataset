@@ -1,4 +1,0 @@
-# ROBIN object detection
-TBD
-
-

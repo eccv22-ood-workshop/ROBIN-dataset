@@ -1,5 +1,35 @@
 # ROBIN-dataset
 
+## Dataset download
+
+The updated dataset can be accessed from [here](https://drive.google.com/drive/folders/1Q-4iqAdPyHCPTGYRQ7B-mYpLbQ9_v84h?usp=sharing), the folder `processed_dataset` contains the dataset processed by the `converter.py` in this repo, you can process the raw dataset (`ROBINv1.1.zip`) in anyway you want, but the name listed in the `csv` file are the entry we will use to evaluate on the CodaLab server.
+Note that we include a new nuisance in our dataset, occlusion.
+
+
+## Evaluation
+
+Our aim is to measure model robustness w.r.t. OOD nuisance factors. Therefore, the final benchmark scoring is data and accuracy constrained. This means, that to be valid a submission must:
+1) Only use the training data that we provide. Using outside data is not allowed.
+2) The model’s accuracy on the I.I.D. test set must be lower than a pre-defined threshold (which is defined by the performance of a baseline model).
+The final benchmark score is then measured as average performance on the held-out O.O.D. test set.
+
+The I.I.D. accuracy thresholds are as follows:
+Image Classification = 91.1 [top-1 accuracy]
+Object Detection = 79.9 [mAP@50]
+Pose Estimation = 68.7 [Acc@pi/6]
+Each accuracy threshold was determined by training the baseline models five times, followed by computing the mean performance and adding three standard deviations.
+
+The evaluation code used on the CodaLab server is provided in the `evaluation` folder.
+
+## CodaLab Servers
+
+| Tasks                | CodaLab                                            |
+|----------------------|----------------------------------------------------|
+| Image-Classification | https://codalab.lisn.upsaclay.fr/competitions/6781 |
+| Object-Detection     | https://codalab.lisn.upsaclay.fr/competitions/6784 |
+| 3D-Pose-Estimation   | https://codalab.lisn.upsaclay.fr/competitions/6783 |
+
+
 ## Changes
 
 1. The Phase-1 of the competition will not be a code submission challenge, we have released all the test data and labels in this repo. And Phase-1 will last longer than original planed, we will ask each team to provide a description of their developing environment at the end of Phase-1, Phase-2 will still be code submission challenge.
@@ -9,8 +39,6 @@
 ---
 
 This is the official repository for the [ROBIN](https://arxiv.org/abs/2111.14341) dataset.
-
-You can access the dataset from [here](https://drive.google.com/drive/folders/1nJo60wphQ36T_E-iAuhN2ftLYh2285xb?usp=sharing)
 
 The `.csv` file in each folder of the zip file contains the bounding box and 3D pose annotations for each images, please refer to this [repo](https://github.com/YoungXIAO13/PoseContrast/blob/main/data/Pascal3D/create_annotation.py) to see how we convert the matlab annotations into these csv files. Please note that for nuisance, there is no images for some particular categories, e.g. there is no diningtables in an OOD weather.
 
