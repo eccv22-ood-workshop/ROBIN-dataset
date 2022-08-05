@@ -38,7 +38,7 @@ The evaluation code used on the CodaLab server is provided in the `evaluation` f
 
 ---
 
-This is the official repository for the [ROBIN](https://arxiv.org/abs/2111.14341) dataset.
+This is the official repository for the [OOD-CV](https://arxiv.org/abs/2111.14341) dataset.
 
 The `.csv` file in each folder of the zip file contains the bounding box and 3D pose annotations for each images, please refer to this [repo](https://github.com/YoungXIAO13/PoseContrast/blob/main/data/Pascal3D/create_annotation.py) to see how we convert the matlab annotations into these csv files. Please note that for nuisance, there is no images for some particular categories, e.g. there is no diningtables in an OOD weather.
 
