@@ -1,4 +1,4 @@
-# ROBIN-dataset
+# OOD-CV dataset
 
 ## Dataset download
 
