@@ -50,9 +50,6 @@ For 3D pose estimation, we recommand using the [NeMo](https://github.com/Angtian
 
 We will also provide the data processing scripts, baselines, and add the occlusion nuisance shortly.
 
-We are still waiting for a confirmation of evaluation metrics from our sponsor, so the final evaluation method is not confirmed and the codalab server is not online.
-But please be noted, we will be restricting the performance on the IID test set in our dataset, for example, if the performance of your model on the IID test set three sigmas away from the mean value of our baseline, your submission will not be valid.
-
 
 ## Q&A
 
