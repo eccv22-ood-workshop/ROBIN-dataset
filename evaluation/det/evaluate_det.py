@@ -25,7 +25,7 @@ def eval_one_nuisance(label_json_path, result_json_path):
     coco_eval.accumulate()
     coco_eval.summarize()
 
-    return coco_eval.stats[0]  # AP50
+    return coco_eval.stats[1]  # AP50
 
 
 def main():
