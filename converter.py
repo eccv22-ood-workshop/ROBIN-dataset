@@ -47,6 +47,9 @@ for folder in file_folders:
         'imgs': [],
         'labels': [],
         'azimuth': [],
+        'elevation': [],
+        'theta': [],
+        'distance': [],
     }
     pbar = trange(len(df), )
     pbar.set_description(f'Processing {folder}')
