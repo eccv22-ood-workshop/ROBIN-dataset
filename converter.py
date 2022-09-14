@@ -58,6 +58,9 @@ for folder in file_folders:
         labels['imgs'].append(img_name)
         labels['labels'].append(row.cls_name)
         labels['azimuth'].append(row.azimuth)
+        labels['elevation'].append(row.elevation)
+        labels['theta'].append(row.inplane_rotation)
+        labels['distance'].append(row.distance)
         
         pbar.update()
         
