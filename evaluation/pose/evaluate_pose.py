@@ -57,38 +57,24 @@ def cal_rotation_matrix(theta, elev, azum, dis):
 
     return rotation_theta(theta) @ get_transformation_matrix(azum, elev, dis)[0:3, 0:3]
 
-
-
-
-parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
-parser.add_argument('--output', default='', type=str, metavar='PATH',
-                    help='path to the output dir')
-parser.add_argument('--input', default='', type=str, metavar='PATH',
-                    help='path to the input dir')
-parser.add_argument('--iid-perf', default=0.687, type=float,
-                    help='iid performance threshold')
-
-
-def main():
-    args = parser.parse_args()
-    print(args)
-    
-    iid_gt = pd.read_csv(osp.join(args.input, 'ref', 'iid_test', 'labels.csv'))
-    iid_pred = pd.read_csv(osp.join(args.input, 'res', 'iid.csv'))
-    thr = np.pi / 6
-    
-
-    iid_acc = 0
-
+def get_acc(pred, gt, thr):
     theta_anno, elevation_anno, azimuth_anno, distance_anno = [], [], [], []
-    for idx, row in iid_gt.iterrows():
+    for idx, row in gt.iterrows():
+        row.theta = row.theta * math.pi / 180
+        row.elevation = row.elevation * math.pi / 180
+        row.azimuth = row.azimuth * math.pi / 180
+        # row.distance = row.distance * math.pi / 180
         theta_anno.append(row.theta)
         elevation_anno.append(row.elevation)
         azimuth_anno.append(row.azimuth)
         distance_anno.append(row.distance)
 
     theta_pred, elevation_pred, azimuth_pred, distance_pred = [], [], [], []
-    for idx, row in iid_pred.iterrows():
+    for idx, row in pred.iterrows():
+        row.theta = row.theta * math.pi / 180
+        row.elevation = row.elevation * math.pi / 180
+        row.azimuth = row.azimuth * math.pi / 180
+        # row.distance = row.distance * math.pi / 180
         theta_pred.append(row.theta)
         elevation_pred.append(row.elevation)
         azimuth_pred.append(row.azimuth)
@@ -109,8 +95,34 @@ def main():
         iid_error.append(error_)
     iid_error = np.array(iid_error)
     
-    iid_acc = float(np.mean(iid_error < thr)) 
+    acc = float(np.mean(iid_error < thr)) 
+    return acc
         
+    
+
+
+
+parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
+parser.add_argument('--output', default='', type=str, metavar='PATH',
+                    help='path to the output dir')
+parser.add_argument('--input', default='', type=str, metavar='PATH',
+                    help='path to the input dir')
+parser.add_argument('--iid-perf', default=0.787, type=float,
+                    help='iid performance threshold')
+
+
+def main():
+    args = parser.parse_args()
+    print(args)
+    
+    # __import__("ipdb").set_trace()
+    gt = pd.read_csv(osp.join(args.input, 'ref', 'gt.csv' ))
+    pred = pd.read_csv(osp.join(args.input, 'res', 'pred.csv'))
+    thr = np.pi / 6
+    
+
+    iid_acc = get_acc(pred[gt.nuisance == 'iid'], gt[gt.nuisance == 'iid'], thr)
+
 
     print("Current iid performance: ", iid_acc)
     assert iid_acc <= args.iid_perf, f"Excceed IID accuracy threshold {args.iid_perf}"
@@ -119,39 +131,7 @@ def main():
     accs = {}
 
     for nuisance in nuisances:
-        gt = pd.read_csv(osp.join(args.input, 'ref', 'nuisances', nuisance, 'labels.csv'))
-        pred = pd.read_csv(osp.join(args.input, 'res', nuisance + '.csv'))
-
-        theta_anno, elevation_anno, azimuth_anno, distance_anno = [], [], [], []
-        for idx, row in gt.iterrows():
-            theta_anno.append(row.theta)
-            elevation_anno.append(row.elevation)
-            azimuth_anno.append(row.azimuth)
-            distance_anno.append(row.distance)
-
-        theta_pred, elevation_pred, azimuth_pred, distance_pred = [], [], [], []
-        for idx, row in pred.iterrows():
-            theta_pred.append(row.theta)
-            elevation_pred.append(row.elevation)
-            azimuth_pred.append(row.azimuth)
-            distance_pred.append(row.distance)
-
-        
-        error = []
-        for theta_p, theta_a, elevation_p, elevation_a, azimuth_p, azimuth_a, distance_p, distance_a in zip(theta_pred, theta_anno, 
-                                                                                                            elevation_pred, elevation_anno, 
-                                                                                                            azimuth_pred, azimuth_anno, 
-                                                                                                            distance_pred, distance_anno):
-            anno_matrix = cal_rotation_matrix(theta_a, elevation_a, azimuth_a, distance_a)
-            pred_matrix = cal_rotation_matrix(theta_p, elevation_p, azimuth_p, distance_p)
-            if np.any(np.isnan(anno_matrix)) or np.any(np.isnan(pred_matrix)) or np.any(np.isinf(anno_matrix)) or np.any(np.isinf(pred_matrix)):
-                error_ = np.pi / 2
-            else:
-                error_ = cal_err(anno_matrix, pred_matrix)
-            error.append(error_)
-        error = np.array(error)
-
-        accs[nuisance] = float(np.mean(iid_error < thr)) 
+        accs[nuisance] = get_acc(pred[gt.nuisance == nuisance], gt[gt.nuisance == nuisance], thr)
         print(f"Acc@pi/6@{nuisance}: {accs[nuisance]}")
 
     mean_acc = sum(accs.values()) / len(accs)
@@ -161,9 +141,9 @@ def main():
     print("Writing scores to ", output_path)
     with open(output_path, mode="w") as f:
         for nuisance in nuisances:
-            print(f'OOD-{nuisance}-TOP-1: ', accs[nuisance], file=f)
-        print("OOD-Acc@pi/6: ", mean_acc, file=f)
-        print("IID-Acc@pi/6: ", iid_acc, file=f)
+            print(f'OOD-{nuisance}-Acc-pi/6: ', accs[nuisance], file=f)
+        print("OOD-Acc-pi/6: ", mean_acc, file=f)
+        print("IID-Acc-pi/6: ", iid_acc, file=f)
 
 
 
