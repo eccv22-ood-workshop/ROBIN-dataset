@@ -5,6 +5,10 @@
 The updated dataset can be accessed from [here](https://drive.google.com/drive/folders/1Q-4iqAdPyHCPTGYRQ7B-mYpLbQ9_v84h?usp=sharing), the folder `processed_dataset` contains the dataset processed by the `converter.py` in this repo, you can process the raw dataset (`ROBINv1.1.zip`) in anyway you want, but the name listed in the `csv` file are the entry we will use to evaluate on the CodaLab server.
 Note that we include a new nuisance in our dataset, occlusion.
 
+## Phase-2 dataset
+
+The dataset used by Phase-2 can be accessed from [here](https://drive.google.com/drive/folders/1Z3zgUTdgWFReQxWFwy1IfXomNQgOW6TE?usp=sharing), an email describing the rules for Phase-2 and final prize consideration will be send out after the phase-2 begins.
+
 
 ## Evaluation
 
