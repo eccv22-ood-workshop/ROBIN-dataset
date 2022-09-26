@@ -9,6 +9,11 @@ Note that we include a new nuisance in our dataset, occlusion.
 
 The dataset used by Phase-2 can be accessed from [here](https://drive.google.com/file/d/1xOxlrTjQb4V2uZFrp1LUdJniUI_ut_gB/view?usp=sharing), an email describing the rules for Phase-2 and final prize consideration will be send out after the phase-2 begins.
 
+### Rules about phase-1 data
+
+1. The phase-1 data can be used as a validation set, but the labels cannot be used for training.
+2. The phase-1 data also can not be used as an unlabeled set for training for phase-2 submissions
+
 
 ## Evaluation
 
