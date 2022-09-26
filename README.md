@@ -7,7 +7,7 @@ Note that we include a new nuisance in our dataset, occlusion.
 
 ## Phase-2 dataset
 
-The dataset used by Phase-2 can be accessed from [here](https://drive.google.com/drive/folders/1Z3zgUTdgWFReQxWFwy1IfXomNQgOW6TE?usp=sharing), an email describing the rules for Phase-2 and final prize consideration will be send out after the phase-2 begins.
+The dataset used by Phase-2 can be accessed from [here](https://drive.google.com/file/d/1xOxlrTjQb4V2uZFrp1LUdJniUI_ut_gB/view?usp=sharing), an email describing the rules for Phase-2 and final prize consideration will be send out after the phase-2 begins.
 
 
 ## Evaluation
