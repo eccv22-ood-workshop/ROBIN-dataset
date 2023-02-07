@@ -2,8 +2,7 @@
 
 ## Dataset download
 
-The updated dataset can be accessed from [here](https://drive.google.com/drive/folders/1Q-4iqAdPyHCPTGYRQ7B-mYpLbQ9_v84h?usp=sharing), the folder `processed_dataset` contains the dataset processed by the `converter.py` in this repo, you can process the raw dataset (`ROBINv1.1.zip`) in anyway you want, but the name listed in the `csv` file are the entry we will use to evaluate on the CodaLab server.
-Note that we include a new nuisance in our dataset, occlusion.
+Please access the data from [here](https://bzhao.me/OOD-CV/)
 
 ## Phase-2 dataset
 
